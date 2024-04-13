@@ -2,7 +2,7 @@ import std/[httpcore,json]
 import puppy
 import ./[types, exceptions]
 
-proc getException*(resp: Response): ref CatchableError =
+proc getException*(resp: Response): ref OpenAIError =
   case resp.code
   of 400:
     result = newException(BadRequestError, $Http400)
@@ -39,4 +39,5 @@ proc getException*(resp: Response): ref CatchableError =
   of 500:
     result = newException(InternalServerError, $Http500)
   else:
-    result = newException(OpenAIError, $Http409)
+    result = newException(OpenAIError, "OpenAI request error, code: " & $resp.code)
+  result.code = resp.code

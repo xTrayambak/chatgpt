@@ -1,5 +1,6 @@
 type
   OpenAIError* = object of CatchableError
+    code*: int
   InvalidAPIKeyError* = object of OpenAIError
   InsufficientQuotaError* = object of OpenAIError
   RateLimitExceededError* = object of OpenAIError
