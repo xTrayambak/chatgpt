@@ -1,2 +1,2 @@
-import chatgpt/[chat,image, types]
-export chat,image,types
+import chatgpt/[chat,image, types, exceptions]
+export chat,image,types,exceptions
