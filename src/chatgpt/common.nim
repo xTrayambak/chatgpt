@@ -12,10 +12,8 @@ proc getException*(resp: Response): ref OpenAIError =
     case err.code
       of "invalid_api_key":
         result = newException(InvalidAPIKeyError, err.message)
-        return
       else:
-        discard
-    result = newException(AuthenticationError, $Http401)
+        result = newException(AuthenticationError, $Http401)
   of 403:
     result = newException(PermissionDeniedError, $Http403)
   of 404:
@@ -30,12 +28,9 @@ proc getException*(resp: Response): ref OpenAIError =
     case err.code
       of "insufficient_quota":
         result = newException(InsufficientQuotaError, err.message)
-        return
       of "rate_limit_exceeded":
         result = newException(RateLimitExceededError, err.message)
-        return
-      else: discard
-    result = newException(RateLimitExceededError, err.message)
+      else: result = newException(RateLimitExceededError, err.message)
   of 500:
     result = newException(InternalServerError, $Http500)
   else:
