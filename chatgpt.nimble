@@ -9,4 +9,4 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "puppy"
+requires "curly >= 1.0.1"

@@ -1,5 +1,5 @@
-import std/[httpcore,json]
-import puppy
+import std/[httpcore, json]
+import curly
 import ./[types, exceptions]
 
 proc getException*(resp: Response): ref OpenAIError =
